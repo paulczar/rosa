@@ -107,6 +107,23 @@ func (e *CommandExecutor) buildCommandArgs(cmd *cobra.Command, positionalArgs []
 	// Add positional arguments first
 	args = append(args, positionalArgs...)
 
+	// Check if output flag is already specified
+	outputSpecified := false
+	if _, ok := flagArgs["output"]; ok {
+		outputSpecified = true
+	}
+	if _, ok := flagArgs["o"]; ok {
+		outputSpecified = true
+	}
+
+	// Check if command supports output flag
+	supportsOutput := false
+	if cmd.Flags().Lookup("output") != nil || cmd.Flags().Lookup("o") != nil {
+		supportsOutput = true
+	} else if cmd.PersistentFlags().Lookup("output") != nil || cmd.PersistentFlags().Lookup("o") != nil {
+		supportsOutput = true
+	}
+
 	// Add flag arguments
 	for key, value := range flagArgs {
 		// Check if flag exists
@@ -134,6 +151,16 @@ func (e *CommandExecutor) buildCommandArgs(cmd *cobra.Command, positionalArgs []
 		} else {
 			args = append(args, flagName+"="+value)
 		}
+	}
+
+	// Automatically add -o json if command supports output flag and it's not already specified
+	if supportsOutput && !outputSpecified {
+		// Prefer shorthand if available
+		outputFlag := "-o"
+		if cmd.Flags().Lookup("o") == nil && cmd.PersistentFlags().Lookup("o") == nil {
+			outputFlag = "--output"
+		}
+		args = append(args, outputFlag+"=json")
 	}
 
 	return args

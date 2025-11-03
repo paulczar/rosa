@@ -49,8 +49,8 @@ func NewServer(rootCmd *cobra.Command) *Server {
 		Version: "1.0.0",
 	}, nil)
 
-	// Register all tools dynamically
-	tools := toolRegistry.GetTools()
+	// Register all tools dynamically using hierarchical structure
+	tools := toolRegistry.GetHierarchicalTools()
 	for _, toolDef := range tools {
 		name, _ := toolDef["name"].(string)
 		description, _ := toolDef["description"].(string)

@@ -31,6 +31,7 @@ require (
 	github.com/nathan-fiscaletti/consolesize-go v0.0.0-20210105204122-a87d9f614b9d
 	github.com/onsi/ginkgo/v2 v2.17.1
 	github.com/onsi/gomega v1.30.0
+	github.com/openai/openai-go/v3 v3.7.0
 	github.com/openshift-online/ocm-common v0.0.31
 	github.com/openshift-online/ocm-sdk-go v0.1.476
 	github.com/pkg/errors v0.9.1
@@ -54,6 +55,10 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/openshift-online/ocm-api-model/clientapi v0.0.431 // indirect
 	github.com/openshift-online/ocm-api-model/model v0.0.431 // indirect
+	github.com/tidwall/gjson v1.14.4 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.1 // indirect
+	github.com/tidwall/sjson v1.2.5 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 )
 

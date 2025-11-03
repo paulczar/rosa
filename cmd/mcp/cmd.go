@@ -19,6 +19,7 @@ package mcp
 import (
 	"github.com/spf13/cobra"
 
+	"github.com/openshift/rosa/cmd/mcp/chat"
 	"github.com/openshift/rosa/cmd/mcp/serve"
 )
 
@@ -31,4 +32,5 @@ var Cmd = &cobra.Command{
 
 func init() {
 	Cmd.AddCommand(serve.Cmd)
+	Cmd.AddCommand(chat.Cmd)
 }
